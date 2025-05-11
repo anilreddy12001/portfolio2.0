@@ -32,7 +32,7 @@ export const Navbar: React.FC = () => {
           <a href="#home" className="flex items-center space-x-2">
             <Code className="h-8 w-8 text-primary dark:text-primary-light" />
             <span className="text-xl font-bold text-gray-900 dark:text-white">
-              Anil Kumar Reddy<span className="text-primary dark:text-primary-light">K</span>
+              Anil Kumar Reddy <span className="text-primary dark:text-primary-light"> K </span>
             </span>
           </a>
 
