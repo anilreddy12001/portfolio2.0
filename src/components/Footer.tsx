@@ -29,7 +29,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center space-x-2">
               <Code className="h-8 w-8 text-primary-light" />
               <span className="text-xl font-bold">
-                Alex<span className="text-primary-light">Dev</span>
+                Anil Kumar Reddy <span className="text-primary-light"> K </span>
               </span>
             </div>
             <p className="text-gray-400 max-w-xs">
@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-500">
-          <p>&copy; {currentYear} Alex Johnson. All rights reserved.</p>
+          <p>&copy; {currentYear} Anilmation. All rights reserved.</p>
         </div>
       </div>
     </footer>
