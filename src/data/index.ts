@@ -98,15 +98,15 @@ export const experiences: Experience[] = [
 
 export const socialLinks: Social[] = [
   { name: 'GitHub', url: 'https://github.com', icon: 'Github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com', icon: 'Linkedin' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/anilkumareddy', icon: 'Linkedin' },
   { name: 'Twitter', url: 'https://twitter.com', icon: 'Twitter' },
   { name: 'Email', url: 'mailto:hello@example.com', icon: 'Mail' },
 ];
 
 export const aboutMe = {
-  name: 'Alex Johnson',
-  title: 'Frontend Developer',
-  description: 'I\'m a passionate frontend developer with over 5 years of experience creating responsive and performant web applications. I specialize in React, TypeScript, and modern JavaScript, with a focus on building intuitive user interfaces.',
-  location: 'San Francisco, CA',
+  name: 'Anil Kumar Reddy K',
+  title: 'Frontend Lead Developer',
+  description: 'I\'m a passionate frontend lead developer with over 14 years of experience creating responsive and performant web applications. I specialize in React, TypeScript, and modern JavaScript, with a focus on building intuitive user interfaces.',
+  location: 'Bengaluru, India',
   availability: 'Available for freelance work',
 };
