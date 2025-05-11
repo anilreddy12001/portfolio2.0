@@ -1,1 +1,1 @@
-# portfolio2.0
+# portfolio2.0 is a portfolio site that dynamically updates according to the updated skills
