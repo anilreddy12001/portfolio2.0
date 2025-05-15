@@ -89,7 +89,7 @@ export const ContactSection: React.FC = () => {
                     href="mailto:hello@example.com" 
                     className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light"
                   >
-                    hello@example.com
+                    anilreddy12001@gmail.com
                   </a>
                 </div>
               </div>

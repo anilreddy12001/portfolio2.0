@@ -41,8 +41,8 @@ export const projects: Project[] = [
     title: 'Financial Dashboard',
     description: 'Interactive dashboard for tracking investments, analyzing market trends, and visualizing financial data.',
     imageUrl: 'https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    tags: ['React', 'D3.js', 'Node.js', 'PostgreSQL'],
-    demoUrl: 'https://example.com',
+    tags: ['React', 'GraphQl','Google Firebase', 'Node.js', 'NoSQL'],
+    demoUrl: 'https://anilproject12001.web.app/',
     githubUrl: 'https://github.com',
   },
 ];
@@ -69,21 +69,21 @@ export const skills: Skill[] = [
 export const experiences: Experience[] = [
   {
     id: '1',
-    company: 'Tech Innovations Inc.',
-    position: 'Senior Frontend Developer',
-    startDate: '2022-01',
+    company: 'Axiscades Technologies',
+    position: 'Technical Lead Manager',
+    startDate: '2023-01',
     endDate: null,
-    description: 'Leading the frontend team in developing modern web applications using React and TypeScript. Implemented CI/CD pipelines and improved performance by 40%.',
+    description: 'Leading the frontend team in developing modern web applications using React and TypeScript. Implemented CI/CD pipelines and improved throughput by 40%.',
     technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
   },
   {
     id: '2',
-    company: 'Digital Solutions Ltd.',
-    position: 'Full Stack Developer',
-    startDate: '2019-05',
-    endDate: '2021-12',
+    company: 'Sterlite Technologies Ltd',
+    position: 'Senior Lead Developer',
+    startDate: '2022-04',
+    endDate: '2022-12',
     description: 'Developed and maintained full-stack applications. Created RESTful APIs and implemented real-time features using WebSockets.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Socket.io'],
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Websockets'],
   },
   {
     id: '3',
@@ -97,10 +97,10 @@ export const experiences: Experience[] = [
 ];
 
 export const socialLinks: Social[] = [
-  { name: 'GitHub', url: 'https://github.com', icon: 'Github' },
+  { name: 'GitHub', url: 'https://github.com/anilreddy12001', icon: 'Github' },
   { name: 'LinkedIn', url: 'https://linkedin.com/anilkumareddy', icon: 'Linkedin' },
-  { name: 'Twitter', url: 'https://twitter.com', icon: 'Twitter' },
-  { name: 'Email', url: 'mailto:hello@example.com', icon: 'Mail' },
+  { name: 'Twitter', url: 'https://twitter.com/anilreddy12001', icon: 'Twitter' },
+  { name: 'Email', url: 'mailto:anilreddy12001@gmail.com', icon: 'Mail' },
 ];
 
 export const aboutMe = {
