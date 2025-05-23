@@ -74,7 +74,7 @@ export const experiences: Experience[] = [
     startDate: '2023-01',
     endDate: null,
     description: 'Leading the frontend team in developing modern web applications using React and TypeScript. Implemented CI/CD pipelines and improved throughput by 40%.',
-    technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
+    technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack'],
   },
   {
     id: '2',
@@ -83,17 +83,42 @@ export const experiences: Experience[] = [
     startDate: '2022-04',
     endDate: '2022-12',
     description: 'Developed and maintained full-stack applications. Created RESTful APIs and implemented real-time features using WebSockets.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Websockets'],
+    technologies: ['Reactjs', 'Node.js', 'Express', 'MongoDB', 'Websockets'],
   },
   {
     id: '3',
-    company: 'StartUp Nexus',
+    company: 'Nokia Networks',
     position: 'Frontend Developer',
-    startDate: '2017-09',
-    endDate: '2019-04',
+    startDate: '2016-06',
+    endDate: '2022-04',
     description: 'Built responsive web applications and contributed to the company\'s UI component library. Worked closely with designers to implement pixel-perfect layouts.',
-    technologies: ['JavaScript', 'HTML', 'CSS', 'jQuery', 'Bootstrap'],
+    technologies: ['JavaScript', 'HTML', 'CSS', 'jQuery', 'Bootstrap', 'Angularjs', 'Reactjs'],
   },
+    {
+    id: '4',
+    company: 'Tata Elxsi',
+    position: 'Frontend Developer',
+    startDate: '2012-04',
+    endDate: '2016-06',
+    description: 'Built responsive web applications using jquery and Backbone.js. Worked closely with product owners to implement pixel-perfect layouts at client location.',
+    technologies: ['JavaScript', 'HTML', 'CSS', 'jQuery', 'Bootstrap', 'Backbone.js'],
+  }, {
+    id: '5',
+    company: 'KPIT Technologies',
+    position: 'Frontend Developer',
+    startDate: '2010-10',
+    endDate: '2012-03',
+    description: 'Created graphics for a client in the automotive domain and a web application for visualizing 2d drawings dynamically.',
+    technologies: ['Adobe Illustrator','JavaScript', 'HTML', 'CSS'],
+  }, {
+    id: '6',
+    company: 'Capgemini',
+    position: 'Frontend Developer',
+    startDate: '2007-04',
+    endDate: '2009-05',
+    description: 'Network management using IBM Netcool suite and geomap product using Google Maps API, Javascript, HTML and CSS.',
+    technologies: ['JavaScript', 'HTML', 'CSS'],
+  }
 ];
 
 export const socialLinks: Social[] = [
