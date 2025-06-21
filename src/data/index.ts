@@ -29,12 +29,12 @@ export const projects: Project[] = [
   },
   {
     id: '3',
-    title: 'AI Image Generator',
+    title: 'AI Face Detector',
     description: 'An application that leverages OpenAI\'s API to generate and manipulate images based on text prompts.',
     imageUrl: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tags: ['React', 'Python', 'OpenAI', 'FastAPI'],
-    demoUrl: 'https://example.com',
-    githubUrl: 'https://github.com',
+    demoUrl: 'https://tensorflowapp.netlify.app/',
+    githubUrl: 'https://github.com/anilreddy12001/tensorFlow',
   },
   {
     id: '4',
