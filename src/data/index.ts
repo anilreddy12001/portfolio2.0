@@ -30,7 +30,7 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'AI Face Detector',
-    description: 'An application that leverages OpenAI\'s API to generate and manipulate images based on text prompts.',
+    description: 'An application that leverages completely client side tensorflow.js library to detect faces inside an uploaded image using machine learning and AI. Keeps getting better with larger data sets.',
     imageUrl: 'https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
     tags: ['React', 'Python', 'OpenAI', 'FastAPI'],
     demoUrl: 'https://tensorflowapp.netlify.app/',
