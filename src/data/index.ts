@@ -123,7 +123,7 @@ export const experiences: Experience[] = [
 
 export const socialLinks: Social[] = [
   { name: 'GitHub', url: 'https://github.com/anilreddy12001', icon: 'Github' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/anilkumareddy', icon: 'Linkedin' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/in/anilkumarreddy/', icon: 'Linkedin' },
   { name: 'Twitter', url: 'https://twitter.com/anilreddy12001', icon: 'Twitter' },
   { name: 'Email', url: 'mailto:anilreddy12001@gmail.com', icon: 'Mail' },
 ];
