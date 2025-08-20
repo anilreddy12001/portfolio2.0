@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { projects } from '../data';
+import image from '../assets/images/metro_image.png';
 
 export const ProjectsSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
@@ -14,7 +15,7 @@ export const ProjectsSection: React.FC = () => {
   const filteredProjects = activeFilter
     ? projects.filter(project => project.tags.includes(activeFilter))
     : projects;
-
+console.log("image: ",image);
   return (
     <section id="projects" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

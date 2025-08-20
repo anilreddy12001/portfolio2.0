@@ -1,5 +1,5 @@
 import { Project, Skill, Experience, Social, NavItem } from '../types';
-
+import image from '../assets/images/metro_image.png';
 export const navItems: NavItem[] = [
   { title: 'Home', href: '#home' },
   { title: 'Projects', href: '#projects' },
@@ -20,11 +20,11 @@ export const projects: Project[] = [
   },
   {
     id: '2',
-    title: 'Task Management App',
-    description: 'A productivity app featuring drag-and-drop task management, reminders, and team collaboration tools.',
-    imageUrl: 'https://images.pexels.com/photos/3243/pen-calendar-to-do-checklist.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    title: 'Metro Booking Web App',
+    description: "A portal featuring an intuitive interface to book a sample metro train, integrating Google's FirebaseDB for data persistence without an extra layer of backend API",
+    imageUrl: image,//'assets/images/metro_image.png',
     tags: ['React', 'Firebase', 'TypeScript', 'Redux'],
-    demoUrl: 'https://example.com',
+    demoUrl: 'https://metrobooking.netlify.app',
     githubUrl: 'https://github.com',
   },
   {
