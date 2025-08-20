@@ -45,6 +45,25 @@ export const projects: Project[] = [
     demoUrl: 'https://anilproject12001.web.app/',
     githubUrl: 'https://github.com',
   },
+  {
+    id: '5',
+    title: 'Energy Dashboard',
+    description: 'Interactive dashboard for viewing an overview of energy consumption, production, and storage across various buildings.',
+    imageUrl: 'https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tags: ['React', 'GraphQl','Google Firebase', 'Node.js', 'NoSQL'],
+    demoUrl: 'https://unityreactapp.netlify.app/',
+    githubUrl: 'https://github.com',
+  },
+  {
+    id: '6',
+    title: 'Defect Detection Mobile App',
+    description: 'Mobile app for registering defects in aircraft with React Native and Kotlin Multiplatform, delivering real-time defect detection powered by TensorFlow Lite ML models. Tailored for engineers preparing aircraft concession documents, this app leverages YOLO-trained models in Python to combine speed, accuracy, and reliability',
+    imageUrl: 'https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    tags: ['React Native','Node.js', 'Python', 'TensorFlow Lite', 'Kotlin Multiplatform'],
+    demoUrl: 'https://anilproject12001.web.app/app-release.zip',
+    githubUrl: 'https://github.com',
+  },
+
 ];
 
 export const skills: Skill[] = [
@@ -130,8 +149,8 @@ export const socialLinks: Social[] = [
 
 export const aboutMe = {
   name: 'Anil Kumar Reddy K',
-  title: 'Frontend Lead Developer',
-  description: 'I\'m a passionate frontend lead developer with over 14 years of experience creating responsive and performant web applications. I specialize in React, TypeScript, and modern JavaScript, with a focus on building intuitive user interfaces.',
+  title: 'Technical Lead Developer',
+  description: 'I\'m a passionate lead developer with over 14 years of experience creating responsive and performant web applications. I specialize in React, React Native, TypeScript, and modern JavaScript, Kotlin with a focus on building intuitive user interfaces and apps.',
   location: 'Bengaluru, India',
   availability: 'Available for freelance work',
 };
