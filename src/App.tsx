@@ -4,6 +4,7 @@ import { HeroSection } from './components/HeroSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { ExperienceSection } from './components/ExperienceSection';
+import SearchSection from './components/SearchSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <main>
         <HeroSection />
+        <SearchSection />
         <ProjectsSection />
         <SkillsSection />
         <ExperienceSection />

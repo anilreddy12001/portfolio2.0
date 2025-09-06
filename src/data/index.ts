@@ -2,6 +2,7 @@ import { Project, Skill, Experience, Social, NavItem } from '../types';
 import image from '../assets/images/metro_image.png';
 export const navItems: NavItem[] = [
   { title: 'Home', href: '#home' },
+  { title: 'Search', href: '#search' },
   { title: 'Projects', href: '#projects' },
   { title: 'Skills', href: '#skills' },
   { title: 'Experience', href: '#experience' },
