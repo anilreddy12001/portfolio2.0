@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import Fuse from 'fuse.js';
 import { projects, skills, experiences, aboutMe, socialLinks } from '../data';
 import { Project, Skill, Experience } from '../types';
 
@@ -14,110 +15,90 @@ const SearchSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearching, setIsSearching] = useState(false);
 
+  // Build a unified index for natural-language search
+  const unifiedData = useMemo(() => {
+    const projectItems = projects.map((project: Project) => ({
+      type: 'project' as const,
+      title: project.title,
+      description: project.description,
+      tags: project.tags,
+      data: project,
+    }));
+
+    const skillItems = skills.map((skill: Skill) => ({
+      type: 'skill' as const,
+      title: skill.name,
+      description: `${skill.category} skill (Level ${skill.level}/5)`,
+      category: skill.category,
+      data: skill,
+    }));
+
+    const experienceItems = experiences.map((experience: Experience) => ({
+      type: 'experience' as const,
+      title: `${experience.position} at ${experience.company}`,
+      description: experience.description,
+      technologies: experience.technologies,
+      company: experience.company,
+      position: experience.position,
+      data: experience,
+    }));
+
+    const aboutItem = [{
+      type: 'about' as const,
+      title: 'About Me',
+      description: aboutMe.description,
+      name: aboutMe.name,
+      role: aboutMe.title,
+      location: aboutMe.location,
+      availability: aboutMe.availability,
+      data: aboutMe,
+    }];
+
+    const socialItems = socialLinks.map((social) => ({
+      type: 'social' as const,
+      title: social.name,
+      description: `Connect with me on ${social.name}`,
+      data: social,
+    }));
+
+    return [...projectItems, ...skillItems, ...experienceItems, ...aboutItem, ...socialItems];
+  }, []);
+
+  const fuse = useMemo(() => {
+    return new Fuse(unifiedData, {
+      includeScore: true,
+      threshold: 0.35,
+      ignoreLocation: true,
+      keys: [
+        { name: 'title', weight: 0.5 },
+        { name: 'description', weight: 0.3 },
+        { name: 'tags', weight: 0.2 },
+        { name: 'category', weight: 0.2 },
+        { name: 'technologies', weight: 0.25 },
+        { name: 'company', weight: 0.25 },
+        { name: 'position', weight: 0.25 },
+        { name: 'name', weight: 0.2 },
+        { name: 'role', weight: 0.2 },
+        { name: 'location', weight: 0.15 },
+        { name: 'availability', weight: 0.1 },
+      ],
+    });
+  }, [unifiedData]);
+
   const searchResults = useMemo(() => {
     if (!searchQuery.trim()) return [];
-
-    const query = searchQuery.toLowerCase().trim();
-    const results: SearchResult[] = [];
-
-    // Search through projects
-    projects.forEach((project: Project) => {
-      let score = 0;
-      const searchableText = `${project.title} ${project.description} ${project.tags.join(' ')}`.toLowerCase();
-      
-      if (project.title.toLowerCase().includes(query)) score += 10;
-      if (project.description.toLowerCase().includes(query)) score += 5;
-      if (project.tags.some(tag => tag.toLowerCase().includes(query))) score += 3;
-      if (searchableText.includes(query)) score += 1;
-
-      if (score > 0) {
-        results.push({
-          type: 'project',
-          title: project.title,
-          description: project.description,
-          data: project,
-          relevanceScore: score
-        });
-      }
-    });
-
-    // Search through skills
-    skills.forEach((skill: Skill) => {
-      let score = 0;
-      const searchableText = `${skill.name} ${skill.category}`.toLowerCase();
-      
-      if (skill.name.toLowerCase().includes(query)) score += 8;
-      if (skill.category.toLowerCase().includes(query)) score += 5;
-      if (searchableText.includes(query)) score += 1;
-
-      if (score > 0) {
-        results.push({
-          type: 'skill',
-          title: skill.name,
-          description: `${skill.category} skill (Level ${skill.level}/5)`,
-          data: skill,
-          relevanceScore: score
-        });
-      }
-    });
-
-    // Search through experiences
-    experiences.forEach((experience: Experience) => {
-      let score = 0;
-      const searchableText = `${experience.company} ${experience.position} ${experience.description} ${experience.technologies.join(' ')}`.toLowerCase();
-      
-      if (experience.company.toLowerCase().includes(query)) score += 8;
-      if (experience.position.toLowerCase().includes(query)) score += 6;
-      if (experience.description.toLowerCase().includes(query)) score += 4;
-      if (experience.technologies.some(tech => tech.toLowerCase().includes(query))) score += 3;
-      if (searchableText.includes(query)) score += 1;
-
-      if (score > 0) {
-        results.push({
-          type: 'experience',
-          title: `${experience.position} at ${experience.company}`,
-          description: experience.description,
-          data: experience,
-          relevanceScore: score
-        });
-      }
-    });
-
-    // Search through about me
-    const aboutText = `${aboutMe.name} ${aboutMe.title} ${aboutMe.description} ${aboutMe.location} ${aboutMe.availability}`.toLowerCase();
-    if (aboutText.includes(query)) {
-      let score = 0;
-      if (aboutMe.name.toLowerCase().includes(query)) score += 10;
-      if (aboutMe.title.toLowerCase().includes(query)) score += 8;
-      if (aboutMe.description.toLowerCase().includes(query)) score += 5;
-      if (aboutMe.location.toLowerCase().includes(query)) score += 3;
-      if (aboutMe.availability.toLowerCase().includes(query)) score += 2;
-
-      results.push({
-        type: 'about',
-        title: 'About Me',
-        description: aboutMe.description,
-        data: aboutMe,
-        relevanceScore: score
-      });
-    }
-
-    // Search through social links
-    socialLinks.forEach((social) => {
-      if (social.name.toLowerCase().includes(query)) {
-        results.push({
-          type: 'social',
-          title: social.name,
-          description: `Connect with me on ${social.name}`,
-          data: social,
-          relevanceScore: 5
-        });
-      }
-    });
-
-    // Sort by relevance score (highest first)
-    return results.sort((a, b) => b.relevanceScore - a.relevanceScore);
-  }, [searchQuery]);
+    const results = fuse.search(searchQuery.trim());
+    return results.map((res) => ({
+      // @ts-expect-error narrow on runtime
+      type: res.item.type,
+      // @ts-expect-error unify fields available
+      title: res.item.title,
+      // @ts-expect-error unify fields available
+      description: res.item.description,
+      data: res.item.data,
+      relevanceScore: res.score != null ? 1 - res.score : 1,
+    })) as SearchResult[];
+  }, [searchQuery, fuse]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -258,7 +239,7 @@ const SearchSection: React.FC = () => {
                               rel="noopener noreferrer"
                               className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
                             >
-                              Visit Profile
+                              Connect
                             </a>
                           )}
                         </div>

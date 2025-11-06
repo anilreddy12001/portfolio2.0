@@ -2,6 +2,7 @@ import { Project, Skill, Experience, Social, NavItem } from '../types';
 import image from '../assets/images/metro_image.png';
 export const navItems: NavItem[] = [
   { title: 'Home', href: '#home' },
+  { title: 'Chat', href: '#chat' },
   { title: 'Search', href: '#search' },
   { title: 'Projects', href: '#projects' },
   { title: 'Skills', href: '#skills' },
@@ -83,7 +84,8 @@ export const skills: Skill[] = [
   { name: 'Jest', level: 3, category: 'tools' },
   { name: 'CI/CD', level: 3, category: 'tools' },
   { name: 'AWS', level: 2, category: 'tools' },
-  { name: 'UI/UX Design', level: 3, category: 'other' },
+  { name: 'UI/UX Design', level: 3, category: 'frontend' },
+  { name: 'Python', level: 2, category: 'backend' },
 ];
 
 export const experiences: Experience[] = [
@@ -92,9 +94,9 @@ export const experiences: Experience[] = [
     company: 'Axiscades Technologies',
     position: 'Technical Lead Manager',
     startDate: '2023-01',
-    endDate: null,
+    endDate: '2025-09',
     description: 'Leading the frontend team in developing modern web applications using React and TypeScript. Implemented CI/CD pipelines and improved throughput by 40%.',
-    technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack'],
+    technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack', 'Python', 'Express'],
   },
   {
     id: '2',
@@ -103,7 +105,7 @@ export const experiences: Experience[] = [
     startDate: '2022-04',
     endDate: '2022-12',
     description: 'Developed and maintained full-stack applications. Created RESTful APIs and implemented real-time features using WebSockets.',
-    technologies: ['Reactjs', 'Node.js', 'Express', 'MongoDB', 'Websockets'],
+    technologies: ['Reactjs', 'Node.js', 'Express', 'MongoDB', 'Websockets', 'Python'],
   },
   {
     id: '3',
@@ -151,7 +153,7 @@ export const socialLinks: Social[] = [
 export const aboutMe = {
   name: 'Anil Kumar Reddy K',
   title: 'Technical Lead Developer',
-  description: 'I\'m a passionate lead developer with over 14 years of experience creating responsive and performant web applications. I specialize in React, React Native, TypeScript, and modern JavaScript, Kotlin with a focus on building intuitive user interfaces and apps.',
+  description: 'I\'m a passionate lead developer with over 14.5 years of experience creating responsive and performant web applications. I specialize in React, React Native, TypeScript, and modern JavaScript, Kotlin with a focus on building intuitive user interfaces and apps.',
   location: 'Bengaluru, India',
   availability: 'Available for freelance work',
 };
