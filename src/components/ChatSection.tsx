@@ -176,8 +176,8 @@ const restAPI=true;
     setMessages(prev => ([...prev, { role: 'assistant', content: answer }]));
   };
 
-  const GEMINI_API_KEY = "AIzaSyCRm2UK688VYCPE39wfHmR83CImPjRMmas";//"AIzaSyADyf1gH-Rg8V26cDbqNS9-PcpoB1TH2_0";//"process.env.REACT_APP_GEMINI_API_KEY" as string; // Set this in your .env file
-
+  const GEMINI_API_KEY = import.meta.env.GEMINI_API_KEY;
+ 
 async function GeminiChat(query: string) {
   const context: string[] = [];
 
