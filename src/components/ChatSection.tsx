@@ -20,10 +20,7 @@ export const ChatSection: React.FC<ChatSectionProps> = ({ webSocket }) => {
   const [input, setInput] = useState('');
   const [wsReady, setWsReady] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [userInput, setUserInput] = useState('');
-  const [chatLog, setChatLog] = useState([
-    { sender: 'bot', message: 'Hello! Ask me anything about my portfolio.' }
-  ]);
+  // Removed unused local chat state in favor of unified message flow
   // Build local semantic index as fallback when WS/AI is not available
   const unifiedData = useMemo(() => {
     const projectItems = projects.map((project: Project) => ({
@@ -101,10 +98,10 @@ export const ChatSection: React.FC<ChatSectionProps> = ({ webSocket }) => {
     const handleMessage = (event: MessageEvent) => {
       try {
         const data = typeof event.data === 'string' ? event.data : '';
-        setMessages(prev => ([...prev, { role: 'assistant', content: data }]));
+        //setMessages(prev => ([...prev, { role: 'assistant', content: data }]));
       } catch {
         // Fallback plain text
-        setMessages(prev => ([...prev, { role: 'assistant', content: String(event.data) }]));
+        //setMessages(prev => ([...prev, { role: 'assistant', content: String(event.data) }]));
       }
     };
 
@@ -135,12 +132,10 @@ export const ChatSection: React.FC<ChatSectionProps> = ({ webSocket }) => {
       return "I couldn't find anything relevant. Try keywords like React, projects, or a company name.";
     }
     const lines = results.map((r, idx) => {
-      // @ts-expect-error unified shape
-      const type = r.item.type as string;
-      // @ts-expect-error unified shape
-      const title = r.item.title as string;
-      // @ts-expect-error unified shape
-      const desc = r.item.description as string;
+      const item = r.item as unknown as { type?: string; title?: string; description?: string };
+      const type = item.type ?? 'item';
+      const title = item.title ?? 'Untitled';
+      const desc = item.description ?? '';
       return `${idx + 1}. [${type}] ${title} — ${desc}`;
     });
     return `Here are some things I found:\n\n${lines.join('\n')}`;
@@ -168,7 +163,11 @@ const restAPI=true;
       }
     }
     if(restAPI){
-      GeminiChat(text)
+      const aiReply = await GeminiChat(text);
+      if (aiReply && typeof aiReply === 'string') {
+        setMessages(prev => ([...prev, { role: 'assistant', content: aiReply }]));
+        return;
+      }
     }
 
     // Local fallback answer
@@ -176,13 +175,19 @@ const restAPI=true;
     setMessages(prev => ([...prev, { role: 'assistant', content: answer }]));
   };
 
-  const GEMINI_API_KEY = import.meta.env.GEMINI_API_KEY;
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
  
 async function GeminiChat(query: string) {
-  const context: string[] = [];
+  const context: string[] = [
+    "You are a helpful assistant that can answer questions about the user's portfolio. You are also able to search the user's portfolio for information and respond as the user himself instead of as a chat bot.",
+    projects.map(project => project.description).join('\n'),
+    skills.map(skill => `${skill.name} — ${skill.category} (Level ${skill.level}/5)`).join('\n'),
+    experiences.map(experience => experience.description).join('\n'),
+    aboutMe.description
+  ];
 
 console.log("calling gemini..")
-    const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     const payload = {
       contents: [
         { role: 'user', parts: [{ text: `Context:\n${context}\n\nQuestion: ${query}` }] }
@@ -193,14 +198,13 @@ console.log("calling gemini..")
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${GEMINI_API_KEY}`,
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload),
       });
 
       const data = await response.json();
-      return data.candidates[0].content.parts[0].text;
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? 'Sorry, I could not generate a response.';
     } catch (error) {
       console.error('Gemini API error:', error);
       return 'Sorry, there was an error processing your request.';
