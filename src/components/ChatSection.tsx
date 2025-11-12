@@ -176,7 +176,7 @@ const restAPI=true;
   };
 
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
- 
+ console.log(import.meta.env);
 async function GeminiChat(query: string) {
   const context: string[] = [
     "You are a helpful assistant that can answer questions about the user's portfolio. You are also able to search the user's portfolio for information and respond as the user himself instead of as a chat bot.",
