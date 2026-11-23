@@ -94,7 +94,6 @@ export const experiences: Experience[] = [
     company: 'Navikenz India',
     position: 'Technical Lead cum sub-practise Head',
     startDate: '2025-11',
-    endDate: 'current',
     description: 'Leading multiple teams in developing modern web applications using Reactjs, TypeScript, Python, serverless DB, deployment on Azure and using AI services to streamline the process for an enhanced user experience and client satisfaction',
     technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack', 'Python', 'Express'],
   },
