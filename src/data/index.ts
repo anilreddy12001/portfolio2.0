@@ -91,6 +91,15 @@ export const skills: Skill[] = [
 export const experiences: Experience[] = [
   {
     id: '1',
+    company: 'Navikenz India',
+    position: 'Technical Lead cum sub-practise Head',
+    startDate: '2025-11',
+    endDate: 'current',
+    description: 'Leading multiple teams in developing modern web applications using Reactjs, TypeScript, Python, serverless DB, deployment on Azure and using AI services to streamline the process for an enhanced user experience and client satisfaction',
+    technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack', 'Python', 'Express'],
+  },
+  {
+    id: '2',
     company: 'Axiscades Technologies',
     position: 'Technical Lead Manager',
     startDate: '2023-01',
@@ -99,7 +108,7 @@ export const experiences: Experience[] = [
     technologies: ['Reactjs', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Antd','Vitejs', 'Webpack', 'Python', 'Express'],
   },
   {
-    id: '2',
+    id: '3',
     company: 'Sterlite Technologies Ltd',
     position: 'Senior Lead Developer',
     startDate: '2022-04',
@@ -108,7 +117,7 @@ export const experiences: Experience[] = [
     technologies: ['Reactjs', 'Node.js', 'Express', 'MongoDB', 'Websockets', 'Python'],
   },
   {
-    id: '3',
+    id: '4',
     company: 'Nokia Networks',
     position: 'Frontend Developer',
     startDate: '2016-06',
@@ -117,7 +126,7 @@ export const experiences: Experience[] = [
     technologies: ['JavaScript', 'HTML', 'CSS', 'jQuery', 'Bootstrap', 'Angularjs', 'Reactjs'],
   },
     {
-    id: '4',
+    id: '5',
     company: 'Tata Elxsi',
     position: 'Frontend Developer',
     startDate: '2012-04',
@@ -125,7 +134,7 @@ export const experiences: Experience[] = [
     description: 'Built responsive web applications using jquery and Backbone.js. Worked closely with product owners to implement pixel-perfect layouts at client location.',
     technologies: ['JavaScript', 'HTML', 'CSS', 'jQuery', 'Bootstrap', 'Backbone.js'],
   }, {
-    id: '5',
+    id: '6',
     company: 'KPIT Technologies',
     position: 'Frontend Developer',
     startDate: '2010-10',
@@ -133,7 +142,7 @@ export const experiences: Experience[] = [
     description: 'Created graphics for a client in the automotive domain and a web application for visualizing 2d drawings dynamically.',
     technologies: ['Adobe Illustrator','JavaScript', 'HTML', 'CSS'],
   }, {
-    id: '6',
+    id: '7',
     company: 'Capgemini',
     position: 'Frontend Developer',
     startDate: '2007-04',
@@ -152,8 +161,8 @@ export const socialLinks: Social[] = [
 
 export const aboutMe = {
   name: 'Anil Kumar Reddy K',
-  title: 'Technical Lead Developer',
-  description: 'I\'m a passionate lead developer with over 14.5 years of experience creating responsive and performant web applications. I specialize in React, React Native, TypeScript, and modern JavaScript, Kotlin with a focus on building intuitive user interfaces and apps.',
+  title: 'Technical Lead cum Manager',
+  description: 'I\'m a passionate lead with over 16 years of experience creating responsive and performant web applications and leading a team of developers. I specialize in React, React Native, TypeScript, and modern JavaScript, Kotlin with a focus on building intuitive user interfaces and apps.',
   location: 'Bengaluru, India',
   availability: 'Available for freelance work',
 };
