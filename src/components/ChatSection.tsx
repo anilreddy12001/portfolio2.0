@@ -176,40 +176,64 @@ const restAPI=true;
   };
 
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
- console.log(import.meta.env);
-async function GeminiChat(query: string) {
-  const context: string[] = [
-    "You are a helpful assistant that can answer questions about the user's portfolio. You are also able to search the user's portfolio for information and respond as the user himself instead of as a chat bot.",
-    projects.map(project => project.description).join('\n'),
-    skills.map(skill => `${skill.name} — ${skill.category} (Level ${skill.level}/5)`).join('\n'),
-    experiences.map(experience => experience.description).join('\n'),
-    aboutMe.description
-  ];
 
-console.log("calling gemini..")
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-    const payload = {
-      contents: [
-        { role: 'user', parts: [{ text: `Context:\n${context}\n\nQuestion: ${query}` }] }
-      ]
-    };
-
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-      return data?.candidates?.[0]?.content?.parts?.[0]?.text ?? 'Sorry, I could not generate a response.';
-    } catch (error) {
-      console.error('Gemini API error:', error);
-      return 'Sorry, there was an error processing your request.';
+  async function GeminiChat(query: string) {
+    if (!GEMINI_API_KEY) {
+      console.warn('VITE_GEMINI_API_KEY is not defined in environment.');
+      return null;
     }
-  };
+
+    const contextText = [
+      "You are Anil Kumar Reddy. Answer questions about your portfolio, experience, skills, and background. Speak in the first person ('I', 'my') as Anil himself.",
+      "\n--- About Me ---\n" + (aboutMe?.description || ''),
+      "\n--- Experience ---\n" + experiences.map(exp => `${exp.role} at ${exp.company} (${exp.period}): ${exp.description}`).join('\n'),
+      "\n--- Skills ---\n" + skills.map(skill => `${skill.name} (${skill.category}, Level: ${skill.level}/5)`).join(', '),
+      "\n--- Projects ---\n" + projects.map(p => `${p.title}: ${p.description}`).join('\n')
+    ].join('\n');
+
+    console.log("Calling Gemini API...");
+
+    // Primary: gemini-2.5-flash, fallback: gemini-1.5-flash
+    const models = ['gemini-2.5-flash', 'gemini-1.5-flash'];
+
+    for (const model of models) {
+      try {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+        const payload = {
+          contents: [
+            {
+              role: 'user',
+              parts: [{ text: `${contextText}\n\nUser Question: ${query}\n\nAnswer:` }]
+            }
+          ]
+        };
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          console.error(`Gemini API error with model ${model} (HTTP ${response.status}):`, errData);
+          continue; // Try next model if one fails
+        }
+
+        const data = await response.json();
+        const textResponse = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        if (textResponse) {
+          return textResponse;
+        }
+      } catch (err) {
+        console.error(`Error querying Gemini with ${model}:`, err);
+      }
+    }
+
+    return null; // Fallback to local search if Gemini fails
+  }
 
 
   const suggestions = [
